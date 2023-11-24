@@ -1,0 +1,39 @@
+<!-- <h1>Get Input Box Value</h1>
+<input type="text" #box   placeholder="Enter your name" name="username">
+<button (click)="getValue(box.value)">Click Me!</button>
+<p>Box value is: {{displayVal}}</p>
+
+<p>--------------</p>
+
+<button (click)="counter('minus')">--</button>
+<p>Count: {{count}}</p>
+<button (click)="counter('add')">++</button> -->
+
+
+<h1>Basic LogIn Form</h1>
+<form #basicForm="ngForm" (submit)="getData(basicForm.value)">
+    <input type="text" ngModel placeholder="Enter your name" name="username"><br>
+    <input type="email" ngModel placeholder="Enter your email" name="email"><br>
+    <input type="password" ngModel placeholder="Enter password" name="password"><br>
+    <button type="submit">Register</button>
+</form>
+
+<ul>
+    <li>{{userData.username}}</li>
+    <li>{{userData.email}}</li>
+    <li>{{userData.password}}</li>
+</ul>
+
+<h1 *ngIf="display" >Heading</h1> 
+<button  (click) = "toggle()">Toggle</button>
+
+
+<h1 style="margin-top: 50px; font-size: 70px; color: blue;">To Do List App</h1>
+<input style="padding: 5px; " type="text" placeholder="Enter your name" #task>
+<br><br>
+<button style="background-color: yellow;" (click)="addTask(task.value)">Add New Task</button>
+<ul *ngFor="let item of list">
+    <li>{{item.name}} <button (click)="removeTask(item.id)">Remove</button></li>
+</ul>
+
+
