@@ -1,0 +1,20 @@
+<form action="" [formGroup] = "creditForm">
+    <input type="text" formControlName="name">
+    <div *ngIf="creditForm.controls.name.getError">
+        <div *ngIf="creditForm.controls.name.getError('required')">
+            Value is required
+        </div>
+        <div *ngIf="
+            creditForm.controls.name.dirty && 
+            creditForm.controls.name.touched && 
+            creditForm.controls.name.getError('minlength')
+            ">
+            Value you entered is {{creditForm.controls.name.getError('minlength').actualLength}} characters long but is must
+            be at least {{creditForm.controls.name.getError('minlength').requiredLength}}
+        </div>
+    </div>
+</form>
+
+<div>Forms Content:  {{creditForm.value | json}}</div>
+<div>Form is Valid  {{creditForm.valid}}</div>
+<div>Form is Valid  {{creditForm.controls.name.errors | json}}</div>
