@@ -1,0 +1,47 @@
+<div class="container form-container">
+    <div class="col-md-6 col-12 mx-auto my-auto reactive-form">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="row g-3">
+                <div class="col-md-6 col-12">
+                    <input id="first-name" type="text" formControlName="firstName" placeholder="First Name">
+                </div>
+                <div class="col-md-6 col-12">
+                    <input id="surName" type="text" formControlName="lastName" placeholder="Surname">
+                </div>
+                <div class="col-12">
+                    <input id="phone" type="tel" formControlName="phone" placeholder="Mobile Number">
+                </div>
+                <div class="col-12">
+                    <input id="password" type="password" formControlName="password" placeholder="New password">
+                </div>
+
+                <div class="row my-3 g-3">
+                    <label for="dateOfBirth" class="d-block">Date of birth?</label>
+                    <div class="col-4" id="dateOfBirth">
+                        <select id="day" formControlName="day">
+                            <option value="" disabled selected>Select Day</option>
+                            <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <select id="month" formControlName="month">
+                            <option value="" disabled selected>Select Month</option>
+                            <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+
+                        <select id="year" formControlName="year">
+                            <option value="" disabled>Select a year</option>
+                            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <button class="btn btn-success" type="submit" [disabled]="!profileForm.valid">Submit</button>
+        </form>
+    </div>
+</div>
