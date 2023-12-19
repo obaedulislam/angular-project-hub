@@ -1,6 +1,7 @@
 <div class="container form-container">
     <div class="col-md-6 col-12 mx-auto my-auto reactive-form">
         <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
             <div class="row g-3">
                 <div class="col-md-6 col-12">
                     <input id="first-name" type="text" formControlName="firstName" placeholder="First Name">
@@ -15,7 +16,8 @@
                     <input id="password" type="password" formControlName="password" placeholder="New password">
                 </div>
 
-                <div class="row my-3 g-3">
+                <!--Date select option start-->
+                <div class="row my-1 g-3">
                     <label for="dateOfBirth" class="d-block">Date of birth?</label>
                     <div class="col-4" id="dateOfBirth">
                         <select id="day" formControlName="day">
@@ -36,12 +38,30 @@
                             <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                         </select>
                     </div>
-
                 </div>
+                <!--Date select option start-->
 
+                <!--Gender select option start-->
+                <div class="row my-1 g-3" id="gender">
+                    <label for="gender" class="d-block">Gender</label>
+                    <div class="col-4 input-align">
+                        <input type="radio" formControlName="gender" value="male">
+                        <label for="male">Male</label>
+                    </div>
+                    <div class="col-4 input-align">
+                        <input type="radio" formControlName="gender" value="female">
+                        <label for="female">Female</label>
+                    </div>
+                    <div class="col-4 input-align">
+                        <input type="radio" formControlName="gender" value="custom">
+                        <label for="custom">Custom</label>
+                    </div>
+                </div>
+                <!--Gender select option end-->
 
             </div>
-            <button class="btn btn-success" type="submit" [disabled]="!profileForm.valid">Submit</button>
+
+            <button class="btn btn-success mt-3" type="submit" [disabled]="!profileForm.valid">Submit</button>
         </form>
     </div>
 </div>

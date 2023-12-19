@@ -26,8 +26,8 @@ export class SignupFormComponent implements OnInit {
       day: ['', Validators.required],
       month: [{ value: '', disabled: true }, Validators.required],
       year: [{ value: '', disabled: true }, Validators.required],
+      gender: ['', Validators.required],
     });
-
   }
 
   ngOnInit(): void {
