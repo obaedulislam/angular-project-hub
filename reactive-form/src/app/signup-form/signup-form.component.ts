@@ -8,18 +8,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class SignupFormComponent implements OnInit {
 
-  // mazhar code
+  // All variable 
   public date = new Date();
-  public maxDay = this.date.getDate();
-  public maxMonth = this.date.getMonth() + 1;
   public maxYear = this.date.getFullYear();
-
 
   profileForm: FormGroup;
   days: any = [];
   months: any = [];
   years: any = [];
-
 
   constructor(private fb: FormBuilder) {
     this.profileForm = this.fb.group({
@@ -43,23 +39,27 @@ export class SignupFormComponent implements OnInit {
     const yearControl = this.profileForm.get('year');
 
     if (dayControl && monthControl && yearControl) {
+
+      //Enable Month after select Day
       dayControl.valueChanges.subscribe(selectedDay => {
         if (selectedDay) {
-          monthControl.enable(); 
+          monthControl.enable();
         } else {
-          monthControl.disable(); 
+          monthControl.disable();
         }
       });
+
+      //Enable Year after select Month
+      monthControl.valueChanges.subscribe(selectedMonth => {
+        if (selectedMonth) {
+          yearControl.enable();
+        } else {
+          yearControl.disable();
+        }
+      });
+
     }
   }
-
-
-
-
-
-
-
-
 
   populateDateDropdowns() {
     /// date population 
@@ -84,12 +84,4 @@ export class SignupFormComponent implements OnInit {
   onSubmit() {
     console.warn(this.profileForm.value);
   }
-
-
-  /**
-   *  event date ( change ) => date => 
-   * both will be checked on selectedMonth method 
-   * based on this year will be enabled and disabled
-   * 
-   */
 }
