@@ -20,6 +20,7 @@ export class SignupFormComponent implements OnInit {
   months: any = [];
   years: any = [];
 
+
   constructor(private fb: FormBuilder) {
     this.profileForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -27,14 +28,35 @@ export class SignupFormComponent implements OnInit {
       phone: ['', Validators.required],
       password: ['', Validators.required],
       day: ['', Validators.required],
-      month: ['', Validators.required],
-      year: ['', Validators.required],
+      month: [{ value: '', disabled: true }, Validators.required],
+      year: [{ value: '', disabled: true }, Validators.required],
     });
+
   }
 
   ngOnInit(): void {
     this.populateDateDropdowns();
+
+    // get all form  control 
+    const dayControl = this.profileForm.get('day');
+    const monthControl = this.profileForm.get('month');
+    const yearControl = this.profileForm.get('year');
+
+    if (dayControl && monthControl && yearControl) {
+      dayControl.valueChanges.subscribe(selectedDay => {
+        if (selectedDay) {
+          monthControl.enable(); 
+        } else {
+          monthControl.disable(); 
+        }
+      });
+    }
   }
+
+
+
+
+
 
 
 
