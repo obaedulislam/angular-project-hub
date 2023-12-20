@@ -16,6 +16,7 @@ export class SignupFormComponent implements OnInit {
   submitted = false;
   days: any = [];
   months: any = [];
+  disabledMonths: any = [];
   years: any = [];
 
 
@@ -25,7 +26,7 @@ export class SignupFormComponent implements OnInit {
       firstName: [''],
       lastName: ['', Validators.required],
       phone: ['', [Validators.required, Validators.minLength(11), Validators.pattern("^\\+?[1-9]\\d{1,14}$")]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*[A-Za-z])(?=.*\\W).*$")]],
       day: ['', Validators.required],
       month: [{ value: '', disabled: true }, Validators.required],
       year: [{ value: '', disabled: true }, Validators.required],
@@ -64,6 +65,15 @@ export class SignupFormComponent implements OnInit {
         }
       });
 
+    }
+  }
+
+  onDayChange(event: any) {
+    const selectedDay = event.target.value;
+    if (selectedDay == '31') {
+      this.disabledMonths = ['February', 'April', 'June', 'September', 'November'];
+    } else {
+      this.disabledMonths = [''];
     }
   }
 

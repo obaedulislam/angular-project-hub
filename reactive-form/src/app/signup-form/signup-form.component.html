@@ -21,13 +21,18 @@
 
                 <div class="col-12">
                     <input id="password" type="password" formControlName="password" placeholder="Add password">
+                    <p *ngIf="submitted && (profileForm.get('password')?.value == null || profileForm.get('password')?.value == '')"
+                        class="error-message text-danger"> Password is required</p>
+                    <p *ngIf="submitted && (profileForm.get('password')?.value.length < 8)"
+                        class="error-message text-danger"> Password must be at least 8 characters long</p>
                 </div>
+
 
                 <!--Date select option start-->
                 <div class="row my-1 g-3">
                     <label for="dateOfBirth" class="d-block">Date of birth?</label>
                     <div class="col-4" id="dateOfBirth">
-                        <select id="day" formControlName="day">
+                        <select id="day" formControlName="day" (change)="onDayChange($event)">
                             <option value="" disabled selected>Select Day</option>
                             <option *ngFor="let day of days" [value]="day">{{ day }}</option>
                         </select>
@@ -35,11 +40,12 @@
                     <div class="col-4">
                         <select id="month" formControlName="month">
                             <option value="" disabled selected>Select Month</option>
-                            <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+                            <option *ngFor="let month of months, let i = index" [value]="month"
+                                [disabled]="disabledMonths.includes(month)">{{ month }}</option>
                         </select>
                     </div>
-                    <div class="col-4">
 
+                    <div class="col-4">
                         <select id="year" formControlName="year">
                             <option value="" disabled selected>Select a year</option>
                             <option *ngFor="let year of years" [value]="year">{{ year }}</option>
