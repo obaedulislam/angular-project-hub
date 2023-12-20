@@ -5,15 +5,22 @@
             <div class="row g-3">
                 <div class="col-md-6 col-12">
                     <input id="first-name" type="text" formControlName="firstName" placeholder="First Name">
+                    <p *ngIf="submitted && (profileForm.get('firstName')?.value == null || profileForm.get('firstName')?.value == '')"
+                        class="error-message text-danger"> First name is required</p>
                 </div>
+
                 <div class="col-md-6 col-12">
                     <input id="surName" type="text" formControlName="lastName" placeholder="Surname">
                 </div>
+
                 <div class="col-12">
                     <input id="phone" type="tel" formControlName="phone" placeholder="Mobile Number">
+                    <p *ngIf="submitted && (profileForm.get('phone')?.value == null || profileForm.get('phone')?.value == '')"
+                        class="error-message text-danger"> Phone Number is required</p>
                 </div>
+
                 <div class="col-12">
-                    <input id="password" type="password" formControlName="password" placeholder="New password">
+                    <input id="password" type="password" formControlName="password" placeholder="Add password">
                 </div>
 
                 <!--Date select option start-->
@@ -61,7 +68,7 @@
 
             </div>
 
-            <button class="btn btn-success mt-3" type="submit" [disabled]="!profileForm.valid">Submit</button>
+            <button class="btn btn-success mt-3" type="submit" *ngIf="!profileForm.valid">Submit</button>
         </form>
     </div>
 </div>

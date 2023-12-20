@@ -13,25 +13,31 @@ export class SignupFormComponent implements OnInit {
   public maxYear = this.date.getFullYear();
 
   profileForm: FormGroup;
+  submitted = false;
   days: any = [];
   months: any = [];
   years: any = [];
 
+
+
   constructor(private fb: FormBuilder) {
     this.profileForm = this.fb.group({
-      firstName: ['', Validators.required],
+      firstName: [''],
       lastName: ['', Validators.required],
-      phone: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.minLength(11), Validators.pattern("^\\+?[1-9]\\d{1,14}$")]],
       password: ['', Validators.required],
       day: ['', Validators.required],
       month: [{ value: '', disabled: true }, Validators.required],
       year: [{ value: '', disabled: true }, Validators.required],
       gender: ['', Validators.required],
     });
+
   }
+
 
   ngOnInit(): void {
     this.populateDateDropdowns();
+
 
     // get all form  control 
     const dayControl = this.profileForm.get('day');
@@ -82,6 +88,7 @@ export class SignupFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     console.warn(this.profileForm.value);
   }
 }
