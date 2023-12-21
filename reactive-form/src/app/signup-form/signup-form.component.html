@@ -21,10 +21,11 @@
 
                 <div class="col-12">
                     <input id="password" type="password" formControlName="password" placeholder="Add password">
-                    <p *ngIf="submitted && (profileForm.get('password')?.value == null || profileForm.get('password')?.value == '')"
-                        class="error-message text-danger"> Password is required</p>
-                    <p *ngIf="submitted && (profileForm.get('password')?.value.length < 8)"
-                        class="error-message text-danger"> Password must be at least 8 characters long</p>
+                    <span
+                        *ngIf="submitted && (profileForm.get('password')?.value == null || profileForm.get('password')?.value == '')"
+                        class="error-message text-danger"> Password is required and</span>
+                    <span *ngIf="submitted && (profileForm.get('password')?.value.length < 8)"
+                        class="error-message text-danger"> Password must be at least 8 characters long</span>
                 </div>
 
 
