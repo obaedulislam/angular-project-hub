@@ -42,17 +42,22 @@
                         <select id="month" formControlName="month">
                             <option value="" disabled selected>Select Month</option>
                             <option *ngFor="let month of months, let i = index" [value]="month"
-                                [disabled]="disabledMonths.includes(month)">{{ month }}</option>
+                                [disabled]="disabledMonths.includes(month)">
+                                {{ month }}</option>
                         </select>
                     </div>
-
                     <div class="col-4">
                         <select id="year" formControlName="year">
                             <option value="" disabled selected>Select a year</option>
                             <option *ngFor="let year of years" [value]="year"
-                                [disabled]="disabledMonths.includes(year)">{{ year }}</option>
+                                [disabled]="disabledMonths.includes(year)">{{ year }}
+                            </option>
                         </select>
                     </div>
+                    <span
+                        *ngIf="submitted && (profileForm.get('day')?.value == null || profileForm.get('day')?.value == '' || profileForm.get('month')?.value == null || profileForm.get('month')?.value == '' || profileForm.get('year')?.value == null || profileForm.get('year')?.value == '')"
+                        class="error-message text-danger"> Select your full date of birth
+                    </span>
                 </div>
                 <!--Date select option start-->
 
@@ -71,7 +76,11 @@
                         <input type="radio" formControlName="gender" value="custom">
                         <label for="custom">Custom</label>
                     </div>
+                    <span
+                        *ngIf="submitted && (profileForm.get('gender')?.value == null || profileForm.get('gender')?.value == '')"
+                        class="error-message text-danger"> Gender is required</span>
                 </div>
+
                 <!--Gender select option end-->
 
             </div>
