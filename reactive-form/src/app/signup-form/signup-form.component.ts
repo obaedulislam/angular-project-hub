@@ -17,7 +17,10 @@ export class SignupFormComponent implements OnInit {
   days: any = [];
   months: any = [];
   disabledMonths: any = [];
+  disabledYears: any = [];
   years: any = [];
+
+
 
 
 
@@ -70,12 +73,35 @@ export class SignupFormComponent implements OnInit {
 
   onDayChange(event: any) {
     const selectedDay = event.target.value;
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
     if (selectedDay == '31') {
       this.disabledMonths = ['February', 'April', 'June', 'September', 'November'];
+    } else if (selectedDay == "30") {
+      this.disabledMonths = ["February"];
+    } else if (selectedDay == "29") {
+      this.disabledMonths = ["February"];
+      for (let year = 1900; year <= currentYear; year++) {
+        if (!((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0)) {
+          this.disabledYears.push(year);
+        }
+      }
     } else {
-      this.disabledMonths = [''];
+      this.disabledMonths = [];
     }
   }
+
+
+  // onMonthChange(event: any) {
+  //   const selectedMonth = event.target.value;
+  //   const currentDate = new Date();
+  //   const currentDay = currentDate.getDate();
+  //   const currentMonth = currentDate.getMonth() + 1;
+  //   const currentYear = currentDate.getFullYear();
+  //   if ((selectedMonth > currentMonth)) {
+  //     this.disabledYears = [currentYear]
+  //   }
+  // }
 
   populateDateDropdowns() {
     /// date population 
@@ -99,6 +125,5 @@ export class SignupFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.warn(this.profileForm.value);
   }
 }

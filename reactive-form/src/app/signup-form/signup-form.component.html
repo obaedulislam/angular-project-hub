@@ -48,7 +48,8 @@
                     <div class="col-4">
                         <select id="year" formControlName="year">
                             <option value="" disabled selected>Select a year</option>
-                            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                            <option *ngFor="let year of years" [value]="year"
+                                [disabled]="disabledMonths.includes(year)">{{ year }}</option>
                         </select>
                     </div>
                 </div>
