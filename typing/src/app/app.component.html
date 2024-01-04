@@ -2,11 +2,11 @@
   <div class="columns is-centered">
     <div class="box column is-one-third">
       <h1 class="has-text-centered">Typing Challenge</h1>
-      <p class="has-text-centered">Randomly Generated text should go there</p>
+      <p class="has-text-centered">{{randomSentence}}</p>
       <div class="field">
-        <input type="text" class="input">
+        <input type="text" class="input" (input)="onInput($event)">
       </div>
-      <div class="box has-text-centered">
+      <div *ngIf="randomSentence === enteredText" class="box has-text-centered">
         <h1 class="title">Success</h1>
       </div>
     </div>
