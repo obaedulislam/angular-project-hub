@@ -13,4 +13,10 @@ export class AppComponent {
   onInput(event: Event) {
     this.enteredText = (event.target as HTMLInputElement).value;
   }
+  compare(randomLetter: string, enteredLetter: string) {
+    if (!enteredLetter) {
+      return "pending";
+    }
+    return randomLetter === enteredLetter ? 'success' : 'incorrect';
+  }
 }
