@@ -8,10 +8,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'pipes';
 
-  payName: string | undefined;
+  public payName: string | undefined;
+  public paymentDate: string | undefined;
 
   onNameChange(event: Event) {
     this.payName = (event.target as HTMLInputElement).value;
     console.log(this.payName);
+  }
+  onDateChange(event: Event) {
+    this.paymentDate = (event.target as HTMLInputElement).value;
+    console.log(this.paymentDate);
   }
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container my-4">
   <h3>Payment Form</h3>
   <div class="row">
     <div class="form-group col-6">
@@ -9,6 +9,18 @@
       <label for=""><strong>Name</strong></label>
       <div>
         {{payName | titlecase}}
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="form-group col-6">
+      <label for="">Payment Date</label>
+      <input class="form-control" type="date" (input)="onDateChange($event)">
+    </div>
+    <div class="col-6">
+      <label for=""><strong>Payment Date</strong></label>
+      <div>
+        {{paymentDate | date: "MMMM d, y"}}
       </div>
     </div>
   </div>
