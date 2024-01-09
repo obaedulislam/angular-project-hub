@@ -1,1 +1,22 @@
-<h1>Pagination </h1>
+<div class="container">
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" [ngClass]="{ disabled: currentPage === 0}">
+                <a class="page-link" (click)="currentPage = currentPage-1">Prev</a>
+            </li>
+            <ng-container *ngFor="let image of natureImages; let i = index">
+                <li *ngIf="checkWindowIndex(i)" class="page-item" [ngClass]="{active: i === currentPage}">
+                    <a (click)="currentPage = i" class="page-link">{{i+1}}</a>
+                </li>
+            </ng-container>
+            <li class="page-item" [ngClass]="{disabled: currentPage == natureImages.length -1}">
+                <a class="page-link" (click)="currentPage = currentPage+1">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="pagination-content">
+        <h4>{{ natureImages[currentPage].title }}</h4>
+        <img class="img-width" [src]="natureImages[currentPage].url" alt="{{ natureImages[currentPage].title }}">
+    </div>
+</div>
