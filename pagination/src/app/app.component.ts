@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Pagination Website to change page';
 
-  currentPage = 3;
+  currentPage = 0;
 
   natureImages = [
     {
