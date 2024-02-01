@@ -62,3 +62,12 @@ h1 {
 li{
     list-style: none;
 }
+
+.teams-container{
+  margin-bottom: 1rem;
+}
+  .team-container{
+    border: 0.1rem solid rgba(128, 128, 128, 0.4);
+    margin: 0;
+    padding: 0.5rem;
+  }
